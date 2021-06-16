@@ -8,19 +8,13 @@ public class WalkingStartButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<OVRHand>() != null)
+        if (other.name.Contains("_CapsuleCollider"))
         {
             ContentManager.GetComponent<WalkingContentManager>().StartExperience();
         }
+        Debug.Log(other.name);
     }
 
-/*
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (other.GetComponent<OVRHand>() != null)
-        {
-            ContentManager.GetComponent<WalkingContentManager>().StartExperience();
-        }
-    }*/
+
 
 }

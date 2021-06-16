@@ -1309,6 +1309,8 @@ MonoBehaviour:
   T1Room: {fileID: 1692229907}
   T2Room: {fileID: 1273599187}
   T3Room: {fileID: 626983389}
+  T1Trigger: {fileID: 0}
+  audioController: {fileID: 1714319615}
 --- !u!65 &219134544
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5867,6 +5869,7 @@ MonoBehaviour:
   Wall: {fileID: 1900784727}
   LaserPointer: {fileID: 2052097090}
   MainMenu: {fileID: 744308188}
+  AC: {fileID: 1714319615}
 --- !u!4 &1434448126
 Transform:
   m_ObjectHideFlags: 0
@@ -6684,6 +6687,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4875523323747323168, guid: 6dd20957f72db1c4ebcebfad7f9ff150, type: 3}
   m_PrefabInstance: {fileID: 158203252}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1714319615 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4497687827208727554, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+  m_PrefabInstance: {fileID: 1880010875}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc9ea4115f61843a1b6f94a1344ac5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1718718382
 GameObject:
   m_ObjectHideFlags: 0
@@ -7202,7 +7216,6 @@ GameObject:
   - component: {fileID: 1870365852}
   - component: {fileID: 1870365851}
   - component: {fileID: 1870365855}
-  - component: {fileID: 1870365856}
   - component: {fileID: 1870365857}
   m_Layer: 0
   m_Name: ButtonBackground
@@ -7286,19 +7299,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1870365853}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 219134543}
-        m_TargetAssemblyTypeName: WalkingContentManager, Assembly-CSharp
-        m_MethodName: StartExperience
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1870365853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7350,22 +7351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ContentManager: {fileID: 219134541}
---- !u!54 &1870365856
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870365849}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!223 &1870365857
 Canvas:
   m_ObjectHideFlags: 0
@@ -7462,6 +7447,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872372268}
   m_CullTransparentMesh: 1
+--- !u!1001 &1880010875
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4497687827208727556, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+      propertyPath: m_Name
+      value: AudioController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497687827208727557, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497687827208727557, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497687827208727557, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497687827208727557, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497687827208727557, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497687827208727557, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497687827208727557, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497687827208727557, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497687827208727557, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497687827208727557, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4497687827208727557, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 29948ff9d7e69e04495d5e3374ce1f77, type: 3}
 --- !u!1 &1896660197
 GameObject:
   m_ObjectHideFlags: 0

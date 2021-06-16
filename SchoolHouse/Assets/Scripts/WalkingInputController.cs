@@ -22,6 +22,8 @@ public class WalkingInputController : MonoBehaviour
 
     public GameObject MainMenu;
 
+    [SerializeField] AudioController AC;
+
     // Wall values
     private float WallYrot;
     private Vector3 WallPosition;
@@ -57,7 +59,8 @@ public class WalkingInputController : MonoBehaviour
 
                 // Hide instructions
                 InstructionCanvas.SetActive(false);
-               
+
+                AC.PlayMusic("StartMenuMusic"); 
 
                 BuildStage += 1;
 
