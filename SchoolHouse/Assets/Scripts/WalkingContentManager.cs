@@ -7,7 +7,6 @@ public class WalkingContentManager : MonoBehaviour
 
     public GameObject T1Content, T2Content, T3Content, T4Content, StartInstructions;
     public GameObject DefualtRoom, T1Room, T2Room, T3Room;
-    public GameObject T1Trigger;
     [SerializeField] AudioController audioController;
     private bool ExperienceStart = false;
 
@@ -23,6 +22,8 @@ public class WalkingContentManager : MonoBehaviour
         ExperienceStart = true;
 
         audioController.PlayMusic("T1MenuMusic");
+        
+        
 
         audioController.StopMusic("StartMenuMusic");
     }
