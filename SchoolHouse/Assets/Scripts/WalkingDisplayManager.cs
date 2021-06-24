@@ -13,10 +13,13 @@ public class WalkingDisplayManager : MonoBehaviour
        Subheading
     }
 
+    public WalkingContentManager contentManager;
 
-    public GameObject imageCloseUp, textCloseUp,imageToShowGO, textToShow, imageGridToShow, contextTitle;
+    public GameObject imageCloseUp, textCloseUp,imageToShowGO, textToShow, imageGridToShow, contextTitle, selector;
+
 
     public showState currentState, previousState;
+
 
 
     private void Update()
@@ -52,6 +55,26 @@ public class WalkingDisplayManager : MonoBehaviour
         textToShow.GetComponent<TextMeshProUGUI>().text = stringToShow;
 
     }
+
+    public void PlayGame()
+    {
+        contentManager.StartExperience();
+    }
+
+
+    public void checkHighlightedObject(GameObject highlightedObject)
+    {
+        
+        if(highlightedObject.tag.Contains("PlayButton"))
+        {
+            PlayGame();
+        }
+
+
+
+    }
+
+
 
     public void showTitle()
     {

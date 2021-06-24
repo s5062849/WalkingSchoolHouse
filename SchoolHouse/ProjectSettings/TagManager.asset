@@ -9,6 +9,7 @@ TagManager:
   - Section2
   - Section3
   - Section4
+  - PlayButton
   layers:
   - Default
   - TransparentFX

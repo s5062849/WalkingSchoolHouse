@@ -95,6 +95,7 @@ public class SoundManager : MonoBehaviour
         if (PlayingTrack1 == true)
         {
             track02.clip = newClip;
+            track02.loop = true;
             track02.Play();
 
             while(timeElapsed < timeToFade)
@@ -110,6 +111,7 @@ public class SoundManager : MonoBehaviour
         else
         {
             track01.clip = newClip;
+            track01.loop = true;
             track01.Play();
 
             while (timeElapsed < timeToFade)

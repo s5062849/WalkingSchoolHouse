@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WalkingButton : MonoBehaviour
 {
-    public GameObject ContentManager;
+    
 
     public WalkingDisplayManager displayManager;
 
@@ -13,37 +13,46 @@ public class WalkingButton : MonoBehaviour
 
     public string displaySting;
 
-   
+    public GameObject selected;
 
+
+    
 
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.name.Contains("PlayBackground") && other.name.Contains("Index"))
+        //If the player hits the select button
+        if (gameObject.name.Contains("SelectButtonTrigger") && other.name.Contains("SelectButtonActivator"))
         {
-            ContentManager.GetComponent<WalkingContentManager>().StartExperience();
-            displayManager.currentState = WalkingDisplayManager.showState.Title;
+            
+            displayManager.checkHighlightedObject(selected);
+
+            //displayManager.currentState = WalkingDisplayManager.showState.Title;
             
         }
-        
-        if (gameObject.name.Contains("ImageBackground") && other.name.Contains("Index"))
+
+        //If the player hits the right button
+        if (gameObject.name.Contains("RightButtonTrigger") && other.name.Contains("RightButtonActivator"))
         {
            
             //displayManager.previousState = WalkingDisplayManager.showState.Title;
-            displayManager.currentState = WalkingDisplayManager.showState.Heading;
+            //displayManager.currentState = WalkingDisplayManager.showState.Heading;
         }
 
-        if (gameObject.name.Contains("ImagesUI") && other.name.Contains("Index"))
+        //if the player hits the left button
+        if (gameObject.name.Contains("LeftButtonTrigger") && other.name.Contains("LeftButtonActivator"))
         {
             
-           // displayManager.previousState = WalkingDisplayManager.showState.Heading;
-            displayManager.currentState = WalkingDisplayManager.showState.Subheading;
-            displayManager.displayImage(gameObject.GetComponent<Image>(), displaySting);
+          
+            //displayManager.currentState = WalkingDisplayManager.showState.Subheading;
+            //displayManager.displayImage(gameObject.GetComponent<Image>(), displaySting);
             
 
         }
-        if (gameObject.name.Contains("BackButton") && other.name.Contains("Index"))
+
+        //if the player hits the back button
+        if (gameObject.name.Contains("BackButtonTrigger") && other.name.Contains("BackButtonActivator"))
         {
-            displayManager.backButton();
+            //displayManager.backButton();
         }
 
 

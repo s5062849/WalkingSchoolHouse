@@ -164,7 +164,7 @@ public class DeskBuilder : MonoBehaviour
     // Update the texture applied to the desk
     private void UpdateTexture()
     {
-        DeskMaterialRenderer.material.SetTextureScale("_MainTex", new Vector2(DeskSurface.transform.localScale.x * 4f, DeskSurface.transform.localScale.z * 4f));
+        DeskMaterialRenderer.material.SetTextureScale("_MainTex", new Vector2(DeskSurface.transform.localScale.x * 5f, DeskSurface.transform.localScale.z * 5f));
     }
 
     // Place the legs of the desk in position regarding new desk size/position
