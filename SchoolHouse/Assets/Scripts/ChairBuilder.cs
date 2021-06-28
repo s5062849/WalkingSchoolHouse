@@ -191,9 +191,9 @@ public class ChairBuilder : MonoBehaviour
     // Place the legs of the desk in position regarding new chair size/position
     private void PlaceLegs()
     {
-        Leg1.transform.localPosition = new Vector3((ChairSurface.transform.localPosition.x - (ChairSurface.transform.localScale.x / 4)) - 0.06f, ChairTop.transform.localPosition.y - 0.05f, (ChairSurface.transform.localPosition.z - (ChairSurface.transform.localScale.z / 4)) + 0.05f);
-        Leg2.transform.localPosition = new Vector3((ChairSurface.transform.localPosition.x - (ChairSurface.transform.localScale.x / 4)) - 0.05f, ChairTop.transform.localPosition.y - 0.05f, (ChairSurface.transform.localPosition.z + (ChairSurface.transform.localScale.z / 4)) - 0.05f);
-        Leg3.transform.localPosition = new Vector3((ChairSurface.transform.localPosition.x + (ChairSurface.transform.localScale.x / 4)) + 0.05f, ChairTop.transform.localPosition.y - 0.05f, (ChairSurface.transform.localPosition.z - (ChairSurface.transform.localScale.z / 4)) + 0.05f);
-        Leg4.transform.localPosition = new Vector3((ChairSurface.transform.localPosition.x + (ChairSurface.transform.localScale.x / 4)) + 0.05f, ChairTop.transform.localPosition.y - 0.05f, (ChairSurface.transform.localPosition.z + (ChairSurface.transform.localScale.z / 4)) - 0.05f);
+        Leg1.transform.localPosition = new Vector3((ChairSurface.transform.localPosition.x - (ChairSurface.transform.localScale.x / 4)) + 0.05f, ChairTop.transform.localPosition.y - 0.05f, (ChairSurface.transform.localPosition.z - (ChairSurface.transform.localScale.z / 4)) + 0.07f);
+        Leg2.transform.localPosition = new Vector3((ChairSurface.transform.localPosition.x - (ChairSurface.transform.localScale.x / 4)) + 0.05f, ChairTop.transform.localPosition.y - 0.05f, (ChairSurface.transform.localPosition.z + (ChairSurface.transform.localScale.z / 4)) - 0.07f);
+        Leg3.transform.localPosition = new Vector3((ChairSurface.transform.localPosition.x + (ChairSurface.transform.localScale.x / 4)) - 0.05f, ChairTop.transform.localPosition.y - 0.05f, (ChairSurface.transform.localPosition.z - (ChairSurface.transform.localScale.z / 4)) + 0.07f);
+        Leg4.transform.localPosition = new Vector3((ChairSurface.transform.localPosition.x + (ChairSurface.transform.localScale.x / 4)) - 0.05f, ChairTop.transform.localPosition.y - 0.05f, (ChairSurface.transform.localPosition.z + (ChairSurface.transform.localScale.z / 4)) - 0.07f);
     }
 }

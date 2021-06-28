@@ -12,7 +12,7 @@ public class SceneChanger : MonoBehaviour
 
     public void LoadWalking()
     {
-        SceneManager.LoadScene("Walking");
+        SceneManager.LoadScene("Walking_Ex");
         Debug.Log("Load walking experience");
     }
 

@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Desk.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Walking.unity
-    guid: 697b44e4630554848a80bead9b647c3f
+    path: Assets/Scenes/Walking_Ex.unity
+    guid: 2e71112de0375ae438ec9d419c51b90f
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 05e15fc08d0904168bf6e9b04143a201, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ad027d0c90c5747d980fbb38edb62175, type: 2}

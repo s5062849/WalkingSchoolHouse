@@ -60,7 +60,7 @@ public class WalkingInputController : MonoBehaviour
                 // Hide instructions
                 InstructionCanvas.SetActive(false);
 
-                AC.PlayMusic("StartMenuMusic"); 
+               // AC.PlayMusic("StartMenuMusic"); 
 
                 BuildStage += 1;
 
