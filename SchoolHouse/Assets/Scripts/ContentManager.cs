@@ -660,13 +660,13 @@ public class ContentManager : MonoBehaviour
                 NarrativePos.transform.localPosition += new Vector3(2.00f, 0, 0);
             }
 
-            if (MenuOption1 == 2 && CurrentT1Page > 2)
+            if (MenuOption1 == 2 && CurrentT2Page > 1)
             {
                 CurrentT2Page--;
                 NarrativePos.transform.localPosition += new Vector3(2.00f, 0, 0);
             }
 
-            if (MenuOption1 == 3 && CurrentT1Page > 3)
+            if (MenuOption1 == 3 && CurrentT3Page > 1)
             {
                 CurrentT3Page--;
                 NarrativePos.transform.localPosition += new Vector3(2.00f, 0, 0);
