@@ -27,7 +27,22 @@ public class ButtonTrigger : MonoBehaviour
         if (other.tag == "Button")
         {
             pressedInProgress = false;
+
+            StartCoroutine("PauseClick");
         }
     }
+
+    private IEnumerator PauseClick()
+    {
+        this.GetComponent<BoxCollider>().enabled = false;
+        Debug.Log("Started Cotoutine");
+        
+        yield return new WaitForSeconds(0.5f);
+
+        Debug.Log("End Cotoutine");
+        this.GetComponent<BoxCollider>().enabled = true;
+
+    }
+
 
 }
