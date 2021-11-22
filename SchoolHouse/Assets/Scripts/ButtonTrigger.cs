@@ -6,6 +6,13 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider))]
 public class ButtonTrigger : MonoBehaviour
 {
+    MasterTelemetrySystem MST;
+
+    private void Start()
+    {
+        MST = GameObject.FindGameObjectWithTag("telemetry").GetComponent<MasterTelemetrySystem>();
+    }
+
 
     [SerializeField]
     private UnityEvent onButtonPressed;
@@ -19,6 +26,7 @@ public class ButtonTrigger : MonoBehaviour
             pressedInProgress = true;
             onButtonPressed?.Invoke();
             Debug.Log("Button pressed");
+            MST.AddLine(gameObject.name);
         }
     }
 

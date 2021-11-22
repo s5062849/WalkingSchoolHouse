@@ -276,7 +276,7 @@ Transform:
   - {fileID: 1180650477}
   - {fileID: 1787087361}
   m_Father: {fileID: 3157432586727319628}
-  m_RootOrder: 36
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9191160
 GameObject:
@@ -9782,6 +9782,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305934400}
   m_CullTransparentMesh: 1
+--- !u!1001 &306334472
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3207299587865698268, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207299587865698268, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.718948
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207299587865698268, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.192104
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207299587865698268, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.123082206
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207299587865698268, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207299587865698268, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207299587865698268, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207299587865698268, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207299587865698268, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207299587865698268, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207299587865698268, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3207299587865698270, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
+      propertyPath: m_Name
+      value: Telementry initialise
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 86b21aca51ad33b428b8e9ce10bbcba9, type: 3}
 --- !u!1 &315977040
 GameObject:
   m_ObjectHideFlags: 0
@@ -14951,7 +15008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543496142}
   m_Layer: 0
-  m_Name: Button4
+  m_Name: Select_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14991,7 +15048,7 @@ GameObject:
   - component: {fileID: 544319679}
   - component: {fileID: 544319678}
   m_Layer: 0
-  m_Name: ButtonTrigger
+  m_Name: Move_Left_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19192,7 +19249,7 @@ Transform:
   - {fileID: 489826834}
   - {fileID: 1731761348}
   m_Father: {fileID: 3157432586727319628}
-  m_RootOrder: 37
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &685257111
 GameObject:
@@ -23177,7 +23234,7 @@ GameObject:
   - component: {fileID: 820820734}
   - component: {fileID: 820820733}
   m_Layer: 0
-  m_Name: ButtonTrigger
+  m_Name: Move_Right_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28901,7 +28958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1031305678}
   m_Layer: 0
-  m_Name: Button3
+  m_Name: Move_Right_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39654,7 +39711,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1355971796}
   m_Layer: 0
-  m_Name: Button2
+  m_Name: Move_Left_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61251,7 +61308,7 @@ GameObject:
   - component: {fileID: 2095992598}
   - component: {fileID: 2095992597}
   m_Layer: 0
-  m_Name: ButtonTrigger
+  m_Name: Select_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62287,7 +62344,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3382618530480647025, guid: 2bf59cc3300dc76439a44f3b14d5eb3d, type: 3}
       propertyPath: m_Name
-      value: Button1
+      value: Back_Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 3382618530744996146, guid: 2bf59cc3300dc76439a44f3b14d5eb3d, type: 3}
+      propertyPath: m_Name
+      value: Back_Button
       objectReference: {fileID: 0}
     - target: {fileID: 3382618530744996148, guid: 2bf59cc3300dc76439a44f3b14d5eb3d, type: 3}
       propertyPath: onButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target

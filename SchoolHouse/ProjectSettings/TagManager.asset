@@ -10,6 +10,9 @@ TagManager:
   - Section3
   - Section4
   - PlayButton
+  - telemetry
+  - debugText
+  - contentHolder
   layers:
   - Default
   - TransparentFX
