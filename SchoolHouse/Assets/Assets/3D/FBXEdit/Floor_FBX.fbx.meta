@@ -3,7 +3,12 @@ guid: 4c166563438355f4b90f3e61b4a6c9de
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: parquet
+    second: {fileID: 2100000, guid: 5b8912c7794b1ad488673d5ee51bd169, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

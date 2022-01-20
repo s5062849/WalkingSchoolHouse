@@ -50,7 +50,7 @@ public class MasterTelemetrySystem : MonoBehaviour
         if(SceneManager.GetActiveScene().name != "Menu")
         {
             contentHolder = GameObject.FindWithTag("contentHolder"); 
-            debugText = GameObject.FindGameObjectWithTag("debugText").GetComponent<TextMeshProUGUI>();
+           // debugText = GameObject.FindGameObjectWithTag("debugText").GetComponent<TextMeshProUGUI>();
         }
        
         playerCam = GameObject.FindWithTag("MainCamera");
@@ -158,6 +158,7 @@ public class MasterTelemetrySystem : MonoBehaviour
         GameObject shownMedia = GetShownMedia();
         if(shownMedia != null)
         {
+            Debug.Log(shownMedia.name);
             switch (shownMedia.tag)
             {
                 case "Image":
@@ -199,6 +200,7 @@ public class MasterTelemetrySystem : MonoBehaviour
         {
             if (child.gameObject.activeSelf)
             {
+                
                 switch (child.tag)
                 {
                     case "Image":

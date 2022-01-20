@@ -13,6 +13,9 @@ TagManager:
   - telemetry
   - debugText
   - contentHolder
+  - Image
+  - Video
+  - Panel
   layers:
   - Default
   - TransparentFX

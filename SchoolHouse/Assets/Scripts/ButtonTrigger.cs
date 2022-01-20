@@ -25,7 +25,7 @@ public class ButtonTrigger : MonoBehaviour
         {
             pressedInProgress = true;
             onButtonPressed?.Invoke();
-            Debug.Log("Button pressed");
+            //Debug.Log(gameObject.name);
             MST.AddLine(gameObject.name);
         }
     }
@@ -43,11 +43,11 @@ public class ButtonTrigger : MonoBehaviour
     private IEnumerator PauseClick()
     {
         this.GetComponent<BoxCollider>().enabled = false;
-        Debug.Log("Started Cotoutine");
+       
         
         yield return new WaitForSeconds(0.5f);
 
-        Debug.Log("End Cotoutine");
+       
         this.GetComponent<BoxCollider>().enabled = true;
 
     }
