@@ -16,6 +16,10 @@ TagManager:
   - Image
   - Video
   - Panel
+  - narrativeHolder
+  - Introduction
+  - Room
+  - HubRoom
   layers:
   - Default
   - TransparentFX

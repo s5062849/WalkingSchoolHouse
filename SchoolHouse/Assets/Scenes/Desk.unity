@@ -29010,11 +29010,11 @@ GameObject:
   - component: {fileID: 997509137}
   m_Layer: 0
   m_Name: NarrativeHolder
-  m_TagString: Untagged
+  m_TagString: narrativeHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &997509136
 RectTransform:
   m_ObjectHideFlags: 0
@@ -43149,7 +43149,7 @@ GameObject:
   - component: {fileID: 1429765377}
   m_Layer: 0
   m_Name: T2Narrative
-  m_TagString: Untagged
+  m_TagString: Introduction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46381,7 +46381,7 @@ GameObject:
   - component: {fileID: 1527951973}
   m_Layer: 0
   m_Name: T3Narrative
-  m_TagString: Untagged
+  m_TagString: Introduction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47915,7 +47915,7 @@ GameObject:
   - component: {fileID: 1548265665}
   m_Layer: 0
   m_Name: T1Narrative
-  m_TagString: Untagged
+  m_TagString: Introduction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65718,7 +65718,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4875523323747323168, guid: 6dd20957f72db1c4ebcebfad7f9ff150, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4875523323747323168, guid: 6dd20957f72db1c4ebcebfad7f9ff150, type: 3}
+      propertyPath: m_TagString
+      value: Room
       objectReference: {fileID: 0}
     - target: {fileID: 4875523323747323168, guid: 6dd20957f72db1c4ebcebfad7f9ff150, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -66330,11 +66334,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1106257102994740837, guid: f8f538984b85f42ca8311f777ad8a560, type: 3}
       propertyPath: m_Name
-      value: ROOM
+      value: HubRoom
       objectReference: {fileID: 0}
     - target: {fileID: 1106257102994740837, guid: f8f538984b85f42ca8311f777ad8a560, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1106257102994740837, guid: f8f538984b85f42ca8311f777ad8a560, type: 3}
+      propertyPath: m_TagString
+      value: HubRoom
       objectReference: {fileID: 0}
     - target: {fileID: 4207988437411162156, guid: f8f538984b85f42ca8311f777ad8a560, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -66763,7 +66771,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9093457136980029536, guid: bbf341123a7b7804e95d8088bf0c76f0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9093457136980029536, guid: bbf341123a7b7804e95d8088bf0c76f0, type: 3}
+      propertyPath: m_TagString
+      value: Room
       objectReference: {fileID: 0}
     - target: {fileID: 9093457136980029536, guid: bbf341123a7b7804e95d8088bf0c76f0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -66991,7 +67003,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3323314863164481711, guid: 01a7a0aa352336749b4ee4900a834e08, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3323314863164481711, guid: 01a7a0aa352336749b4ee4900a834e08, type: 3}
+      propertyPath: m_TagString
+      value: Room
       objectReference: {fileID: 0}
     - target: {fileID: 3323314863164481711, guid: 01a7a0aa352336749b4ee4900a834e08, type: 3}
       propertyPath: m_StaticEditorFlags

@@ -22,8 +22,9 @@ public class MasterTelemetrySystem : MonoBehaviour
     public TelementryRunTimeData telementryRuntimeData;
 
 
-    public GameObject contentHolder;
-    public GameObject playerCam;
+    public GameObject contentHolder, narrativeHolder, hubRoom;
+    public GameObject[] rooms;
+  
 
     public static GameObject instance = null;
 
@@ -49,11 +50,22 @@ public class MasterTelemetrySystem : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().name != "Menu")
         {
-            contentHolder = GameObject.FindWithTag("contentHolder"); 
-           // debugText = GameObject.FindGameObjectWithTag("debugText").GetComponent<TextMeshProUGUI>();
+            contentHolder = GameObject.FindWithTag("contentHolder");
+            // debugText = GameObject.FindGameObjectWithTag("debugText").GetComponent<TextMeshProUGUI>();
+            narrativeHolder = GameObject.FindWithTag("narrativeHolder");
+            narrativeHolder.SetActive(false);
+
+            hubRoom = GameObject.FindWithTag("HubRoom");
+
+            rooms = GameObject.FindGameObjectsWithTag("Room");
+            foreach(GameObject go in rooms)
+            {
+                go.SetActive(false);
+            }
+
         }
        
-        playerCam = GameObject.FindWithTag("MainCamera");
+        
        
 
         
@@ -80,12 +92,10 @@ public class MasterTelemetrySystem : MonoBehaviour
     {
         public string actionTimeCode;
         public string buttonPressedID;
-        public float headXcoord;
-        public float headYcoord;
-        public float headZcoord;
         public string experienceMode;
         public string mediaType;
         public string mediaShown;
+        public string context;
     }
 
 
@@ -138,12 +148,7 @@ public class MasterTelemetrySystem : MonoBehaviour
         telementryRuntimeData = new TelementryRunTimeData();
 
         //add the time the action happend
-        telementryRuntimeData.actionTimeCode = System.DateTime.Now.ToString("HH:mm:ss.fff");
-
-        //the current head position ##### CAN BE DELETED LATER ######
-        telementryRuntimeData.headXcoord = playerCam.transform.position.x;
-        telementryRuntimeData.headYcoord = playerCam.transform.position.y;
-        telementryRuntimeData.headZcoord = playerCam.transform.position.z;
+        telementryRuntimeData.actionTimeCode = DateTime.Now.ToString("HH:mm:ss.fff");
 
         //add the button pressed
         telementryRuntimeData.buttonPressedID = buttonPressed;
@@ -155,37 +160,71 @@ public class MasterTelemetrySystem : MonoBehaviour
 
 
         //This gets the game object of the content that this shown
-        GameObject shownMedia = GetShownMedia();
+        GameObject shownMedia;
+        shownMedia = GetShownMedia();
+        telementryRuntimeData.mediaShown = "";
+        telementryRuntimeData.mediaType = "";
+
         if(shownMedia != null)
         {
             Debug.Log(shownMedia.name);
-            switch (shownMedia.tag)
+
+            if(contentHolder.activeSelf || narrativeHolder.activeSelf)
             {
-                case "Image":
-                    telementryRuntimeData.mediaShown = shownMedia.GetComponent<Image>().sprite.name;
-                    telementryRuntimeData.mediaType = "Image";
-                    break;
+                switch (shownMedia.tag)
+                {
+                    case "Image":
+                        telementryRuntimeData.mediaShown = shownMedia.GetComponent<Image>().sprite.name;
+                        telementryRuntimeData.mediaType = "Image";
+                        break;
 
-                case "Video":
-                    telementryRuntimeData.mediaShown = shownMedia.GetComponent<VideoPlayer>().clip.name;
-                    telementryRuntimeData.mediaType = "Video";
-                    break;
+                    case "Video":
+                        telementryRuntimeData.mediaShown = shownMedia.GetComponent<VideoPlayer>().clip.name;
+                        telementryRuntimeData.mediaType = "Video";
+                        break;
 
-                case "Panel":
-                    telementryRuntimeData.mediaShown = shownMedia.name;
-                    telementryRuntimeData.mediaType = "Timeline";
-                    break;
+                    case "Panel":
+                        telementryRuntimeData.mediaShown = shownMedia.name;
+                        telementryRuntimeData.mediaType = "Timeline";
+                        break;
+                    case "Introduction":
+                        telementryRuntimeData.mediaShown = shownMedia.name;
+                        telementryRuntimeData.mediaType = shownMedia.tag;
+                        break;
 
-                default:
-                    Debug.LogError("No Tag Found");
-                    break;
+                    default:
+                        Debug.LogError("No Tag Found");
+                        break;
 
+                }
+
+            } 
+            else
+            {
+                telementryRuntimeData.mediaShown = "";
+                telementryRuntimeData.mediaType = "";
             }
+            
         }
        
+       
+        //foreach loop that outputs what context the player is in currently
+        if(!hubRoom.activeSelf)
+        {
+            foreach (GameObject go in rooms)
+            {
+                if (go.activeSelf)
+                {
+                    telementryRuntimeData.context = go.name;
+                }
+            }
+        }
+        else { telementryRuntimeData.context = hubRoom.name; }
+        
 
         //pushes the data to a json file
         lineToPush = JsonUtility.ToJson(telementryRuntimeData, true);
+
         //saves the file
         saveFile(lineToPush);
 
@@ -196,37 +235,41 @@ public class MasterTelemetrySystem : MonoBehaviour
    public GameObject GetShownMedia()
     {
         //goes through each child within the content holder and if it is active (ie being shown to the player) then retun the gamObject
-        foreach(Transform child in contentHolder.transform)
+        if(narrativeHolder.gameObject.activeSelf)
         {
-            if (child.gameObject.activeSelf)
+            foreach(Transform child in narrativeHolder.transform)
             {
-                
-                switch (child.tag)
+                if(child.gameObject.activeSelf)
                 {
-                    case "Image":
-                        return child.GetComponentInChildren<Image>().gameObject;
-
-
-                    case "Video":
-                        return child.GetComponentInChildren<VideoPlayer>().gameObject;
-
-                    case "Panel":
-                        return child.gameObject;
-                    default:
-                        return null;
-
+                    return child.gameObject;
                 }
             }
-            
-
-            
-
-
         }
+        else
+        {
+            foreach (Transform child in contentHolder.transform)
+            {
+                if (child.gameObject.activeSelf)
+                {
 
+                    switch (child.tag)
+                    {
+                        case "Image":
+                            return child.GetComponentInChildren<Image>().gameObject;
+
+                        case "Video":
+                            return child.GetComponentInChildren<VideoPlayer>().gameObject;
+
+                        case "Panel":
+                            return child.gameObject;
+                        default:
+                            return null;
+
+                    }
+                }
+            }
+        }
         return null;
-
-
 
     }
 
