@@ -8,6 +8,7 @@ using TMPro;
 
 public class ContentManager : MonoBehaviour
 {
+    public MasterTelemetrySystem MTS;
 
     private int MenuOption1, MenuOption2;
 
@@ -99,6 +100,7 @@ public class ContentManager : MonoBehaviour
         MenuOption2 = 1;
 
         ResetValues();
+        MTS = GameObject.FindGameObjectWithTag("telemetry").GetComponent<MasterTelemetrySystem>();
     }
 
     // Update is called once per frame
@@ -1144,6 +1146,7 @@ public class ContentManager : MonoBehaviour
         NarrativeHolder.SetActive(true);
         MainRoom.SetActive(false);
         T1Room.SetActive(true);
+        MTS.AddLine("");
     }
 
     private void SetUpT2()
@@ -1156,6 +1159,7 @@ public class ContentManager : MonoBehaviour
         NarrativeHolder.SetActive(true);
         MainRoom.SetActive(false);
         T2Room.SetActive(true);
+        MTS.AddLine("");
     }
 
     private void SetUpT3()
@@ -1168,6 +1172,7 @@ public class ContentManager : MonoBehaviour
         NarrativeHolder.SetActive(true);
         MainRoom.SetActive(false);
         T3Room.SetActive(true);
+        MTS.AddLine("");
     }
 
     private void SetUpMain()

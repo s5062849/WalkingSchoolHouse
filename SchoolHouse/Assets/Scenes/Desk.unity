@@ -10890,7 +10890,7 @@ GameObject:
   - component: {fileID: 353367017}
   m_Layer: 0
   m_Name: ContentManager
-  m_TagString: Untagged
+  m_TagString: contentManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12995,11 +12995,11 @@ GameObject:
   - component: {fileID: 425531904}
   m_Layer: 0
   m_Name: T3SelectionRing
-  m_TagString: Untagged
+  m_TagString: SelectionRing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &425531904
 Transform:
   m_ObjectHideFlags: 0
@@ -27799,11 +27799,11 @@ GameObject:
   - component: {fileID: 960452833}
   m_Layer: 0
   m_Name: T2SelectionRing
-  m_TagString: Untagged
+  m_TagString: SelectionRing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &960452833
 Transform:
   m_ObjectHideFlags: 0
@@ -45033,11 +45033,11 @@ GameObject:
   - component: {fileID: 1506980087}
   m_Layer: 0
   m_Name: Menu1SelectionRing
-  m_TagString: Untagged
+  m_TagString: SelectionRing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1506980087
 Transform:
   m_ObjectHideFlags: 0
@@ -50061,11 +50061,11 @@ GameObject:
   - component: {fileID: 1647022121}
   m_Layer: 0
   m_Name: T1SelectionRing
-  m_TagString: Untagged
+  m_TagString: SelectionRing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1647022121
 Transform:
   m_ObjectHideFlags: 0

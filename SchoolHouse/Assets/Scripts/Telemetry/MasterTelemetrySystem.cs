@@ -24,12 +24,17 @@ public class MasterTelemetrySystem : MonoBehaviour
 
     public GameObject contentHolder, narrativeHolder, hubRoom;
     public GameObject[] rooms;
+
+    public GameObject[] selectionRings;
   
 
     public static GameObject instance = null;
 
     public TextMeshProUGUI debugText;
     //public TextMeshPro debugText;
+
+    public ContentManager contentManager;
+
 
     //makes sure that this is the only object that exsits
     private void Awake()
@@ -63,6 +68,13 @@ public class MasterTelemetrySystem : MonoBehaviour
                 go.SetActive(false);
             }
 
+            selectionRings = GameObject.FindGameObjectsWithTag("SelectionRing");
+            foreach (GameObject go in selectionRings)
+            {
+                go.SetActive(false);
+            }
+
+            contentManager = GameObject.FindGameObjectWithTag("contentManager").GetComponent<ContentManager>();
         }
        
         
@@ -96,6 +108,7 @@ public class MasterTelemetrySystem : MonoBehaviour
         public string mediaType;
         public string mediaShown;
         public string context;
+        public string deskMenuSelection;
     }
 
 
@@ -148,7 +161,7 @@ public class MasterTelemetrySystem : MonoBehaviour
         telementryRuntimeData = new TelementryRunTimeData();
 
         //add the time the action happend
-        telementryRuntimeData.actionTimeCode = DateTime.Now.ToString("HH:mm:ss.fff");
+        telementryRuntimeData.actionTimeCode = DateTime.Now.ToString("HH:mm:ss");
 
         //add the button pressed
         telementryRuntimeData.buttonPressedID = buttonPressed;
@@ -167,8 +180,6 @@ public class MasterTelemetrySystem : MonoBehaviour
 
         if(shownMedia != null)
         {
-            Debug.Log(shownMedia.name);
-
             if(contentHolder.activeSelf || narrativeHolder.activeSelf)
             {
                 switch (shownMedia.tag)
@@ -203,7 +214,10 @@ public class MasterTelemetrySystem : MonoBehaviour
             {
                 telementryRuntimeData.mediaShown = "";
                 telementryRuntimeData.mediaType = "";
-            }
+               
+
+            } 
+          
             
         }
        
@@ -220,7 +234,84 @@ public class MasterTelemetrySystem : MonoBehaviour
             }
         }
         else { telementryRuntimeData.context = hubRoom.name; }
-        
+
+        //depending on what menu options are visible, this will set the telemetry runtime data field deskMenuSelection as the correct thing that is hovered over
+        int ringPosNumber = ringPosition();
+        if(buttonPressed != "")
+        {
+            if (contentManager.Menu1.activeInHierarchy)
+            {
+                if (ringPosNumber == 0)
+                {
+                    telementryRuntimeData.deskMenuSelection = "Kosovo in Former Yugoslavia";
+                }
+                else if (ringPosNumber == 1)
+                {
+                    telementryRuntimeData.deskMenuSelection = "Civil Resistance";
+                }
+                else if (ringPosNumber == 2)
+                {
+                    telementryRuntimeData.deskMenuSelection = "School House";
+                }
+            }
+            else if (contentManager.T1Options.activeInHierarchy)
+            {
+                if (ringPosNumber == 0)
+                {
+                    telementryRuntimeData.deskMenuSelection = "Images";
+                }
+                else if (ringPosNumber == 1)
+                {
+                    telementryRuntimeData.deskMenuSelection = "Timeline";
+                }
+            }
+            else if (contentManager.T2Options.activeInHierarchy)
+            {
+                if (ringPosNumber == 0)
+                {
+                    telementryRuntimeData.deskMenuSelection = "Images";
+                }
+                else if (ringPosNumber == 1)
+                {
+                    telementryRuntimeData.deskMenuSelection = "Videos";
+                }
+                else if (ringPosNumber == 2)
+                {
+                    telementryRuntimeData.deskMenuSelection = "Timeline";
+                }
+            }
+            else if (contentManager.T3Options.activeInHierarchy)
+            {
+                if (ringPosNumber == 0)
+                {
+                    telementryRuntimeData.deskMenuSelection = "Images";
+                }
+                else if (ringPosNumber == 1)
+                {
+                    telementryRuntimeData.deskMenuSelection = "Videos";
+                }
+                else if (ringPosNumber == 2)
+                {
+                    telementryRuntimeData.deskMenuSelection = "Archive";
+                }
+                else if (ringPosNumber == 3)
+                {
+                    telementryRuntimeData.deskMenuSelection = "Timeline";
+                }
+            }
+            //if there is no content that is highlighted, set this to 0
+            else
+            {
+                telementryRuntimeData.deskMenuSelection = "";
+            }
+        }
+        else if(buttonPressed == "")
+        {
+            telementryRuntimeData.deskMenuSelection = "";
+        }
+
+
+
 
         //pushes the data to a json file
         lineToPush = JsonUtility.ToJson(telementryRuntimeData, true);
@@ -273,9 +364,60 @@ public class MasterTelemetrySystem : MonoBehaviour
 
     }
 
+    //method that returns the position of the active selection ring
+    public int ringPosition()
+    {
+        
+       foreach(GameObject go in selectionRings)
+        {
+            if(go.activeInHierarchy)
+            {
+                switch(go.name)
+                {
+                    case "Menu1SelectionRing":
+                        for(int i = 0; i < contentManager.Menu1Positions.Length; i++)
+                        {
+                            if (go.transform.position == contentManager.Menu1Positions[i].position)
+                                return i;
+                        }
+                        break;
+                    case "T1SelectionRing":
+                        for (int i = 0; i < contentManager.T1MenuPositions.Length; i++)
+                        {
+                            if (go.transform.position == contentManager.T1MenuPositions[i].position)
+                                return i;
+                        }
+                        break;
+                    case "T2SelectionRing":
+                        for (int i = 0; i < contentManager.T2MenuPositions.Length; i++)
+                        {
+                            if (go.transform.position == contentManager.T2MenuPositions[i].position)
+                                return i;
+                        }
+                        break;
+                    case "T3SelectionRing":
+                        for (int i = 0; i < contentManager.T3MenuPositions.Length; i++)
+                        {
+                            if (go.transform.position == contentManager.T3MenuPositions[i].position)
+                                return i;
+                        }
+                        break;
+                    default:
+                        Debug.LogError("No selection ring active");
+                        return 10;
+
+                }
+            }
+            else
+            {
+               // return 11;
+            }
+        }
+        return 10;
+    }
 
 
-
+   
 
 
     //saves the file, takes in the json string to be added to the file
