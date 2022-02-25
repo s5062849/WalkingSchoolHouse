@@ -161,7 +161,7 @@ public class MasterTelemetrySystem : MonoBehaviour
         telementryRuntimeData = new TelementryRunTimeData();
 
         //add the time the action happend
-        telementryRuntimeData.actionTimeCode = DateTime.Now.ToString("HH:mm:ss");
+        telementryRuntimeData.actionTimeCode = DateTime.Now.ToString("HH:mm:ss.ff");
 
         //add the button pressed
         telementryRuntimeData.buttonPressedID = buttonPressed;
