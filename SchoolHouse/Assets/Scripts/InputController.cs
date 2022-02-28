@@ -392,7 +392,7 @@ public class InputController : MonoBehaviour
 
             if (BuildStage > 15 && Building == true)
             {
-                ResetGlobalPosition();
+                //ResetGlobalPosition();
                 LaserPointer.SetActive(true);
             }
 
