@@ -1,7 +1,11 @@
+using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class InputController : MonoBehaviour
 {
@@ -63,6 +67,22 @@ public class InputController : MonoBehaviour
     // Used to see if user is building room
     private bool Building = false;
 
+    public TextMeshProUGUI debugText;
+
+    //Data Saving
+    string SetupDataFileLocation;
+    SetupDataCollection setupDataCollection = new SetupDataCollection();
+    WallData wallData = new WallData();
+    DeskData deskData = new DeskData();
+    ChairData chairData = new ChairData();
+    ButtonData buttonData = new ButtonData();
+
+
+    private void Awake()
+    {
+        SetupDataFileLocation = Application.persistentDataPath + "/SetupData.json";
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,14 +91,12 @@ public class InputController : MonoBehaviour
         //Hide instruction canvas
         InstructionCanvas.SetActive(false);
 
-        if (PlayerPrefs.GetInt("IsSavedData") == 1)
-        {
+        if (File.Exists(SetupDataFileLocation))
             LoadButton.interactable = true;
-        }
         else
-        {
             LoadButton.interactable = false;
-        }
+
+        
     }
 
     // Update is called once per frame
@@ -97,16 +115,10 @@ public class InputController : MonoBehaviour
 
                 _wallBuilder.UpdateWallPosition(WallPosition, WallYrot);
 
-                // Save values
-                PlayerPrefs.SetFloat("WallPositionX", WallPosition.x);
-                PlayerPrefs.SetFloat("WallPositionY", WallPosition.y);
-                PlayerPrefs.SetFloat("WallPositionZ", WallPosition.z);
-
-                PlayerPrefs.SetFloat("WallRotationY", WallYrot);
-
                 // Change instructions
                 Ins1.SetActive(false);
                 Ins2.SetActive(true);
+                
             }
 
             // Desk position
@@ -121,11 +133,12 @@ public class InputController : MonoBehaviour
                 _deskBuilder.UpdateDeskPosition(DeskPosition, DeskYrot);
 
                 // Save values
-                PlayerPrefs.SetFloat("DeskPositionX", DeskPosition.x);
-                PlayerPrefs.SetFloat("DeskPositionY", DeskPosition.y);
-                PlayerPrefs.SetFloat("DeskPositionZ", DeskPosition.z);
+                //PlayerPrefs.SetFloat("DeskPositionX", DeskPosition.x);
+                //PlayerPrefs.SetFloat("DeskPositionY", DeskPosition.y);
+                //PlayerPrefs.SetFloat("DeskPositionZ", DeskPosition.z);
+                //PlayerPrefs.SetFloat("DeskRotationY", DeskYrot);
 
-                PlayerPrefs.SetFloat("DeskRotationY", DeskYrot);
+
 
                 // Change instructions
                 Ins2.SetActive(false);
@@ -140,9 +153,9 @@ public class InputController : MonoBehaviour
                 _deskBuilder.UpdateDeskHeight(DeskHeight);
 
                 // Save values
-                PlayerPrefs.SetFloat("DeskHeightX", DeskHeight.x);
-                PlayerPrefs.SetFloat("DeskHeightY", DeskHeight.y);
-                PlayerPrefs.SetFloat("DeskHeightZ", DeskHeight.z);
+                //PlayerPrefs.SetFloat("DeskHeightX", DeskHeight.x);
+                //PlayerPrefs.SetFloat("DeskHeightY", DeskHeight.y);
+                //PlayerPrefs.SetFloat("DeskHeightZ", DeskHeight.z);
 
                 // Change instructions
                 Ins3.SetActive(false);
@@ -158,9 +171,9 @@ public class InputController : MonoBehaviour
                 _deskBuilder.UpdateDeskRight(DeskRight);
 
                 // Save values
-                PlayerPrefs.SetFloat("DeskRightX", DeskRight.x);
-                PlayerPrefs.SetFloat("DeskRightY", DeskRight.y);
-                PlayerPrefs.SetFloat("DeskRightZ", DeskRight.z);
+                //PlayerPrefs.SetFloat("DeskRightX", DeskRight.x);
+                //PlayerPrefs.SetFloat("DeskRightY", DeskRight.y);
+                //PlayerPrefs.SetFloat("DeskRightZ", DeskRight.z);
 
                 // Change instructions
                 Ins4.SetActive(false);
@@ -175,9 +188,9 @@ public class InputController : MonoBehaviour
                 _deskBuilder.UpdateDeskLeft(DeskLeft);
 
                 // Save values
-                PlayerPrefs.SetFloat("DeskLeftX", DeskLeft.x);
-                PlayerPrefs.SetFloat("DeskLeftY", DeskLeft.y);
-                PlayerPrefs.SetFloat("DeskLeftZ", DeskLeft.z);
+                //PlayerPrefs.SetFloat("DeskLeftX", DeskLeft.x);
+                //PlayerPrefs.SetFloat("DeskLeftY", DeskLeft.y);
+                //PlayerPrefs.SetFloat("DeskLeftZ", DeskLeft.z);
 
                 ContentHolder.transform.position = AttachReference.transform.position;
 
@@ -194,13 +207,17 @@ public class InputController : MonoBehaviour
                 _deskBuilder.UpdateDeskBack(DeskBack);
 
                 // Save values
-                PlayerPrefs.SetFloat("DeskBackX", DeskBack.x);
-                PlayerPrefs.SetFloat("DeskBackY", DeskBack.y);
-                PlayerPrefs.SetFloat("DeskBackZ", DeskBack.z);
+                //PlayerPrefs.SetFloat("DeskBackX", DeskBack.x);
+                //PlayerPrefs.SetFloat("DeskBackY", DeskBack.y);
+                //PlayerPrefs.SetFloat("DeskBackZ", DeskBack.z);
 
                 // Change instructions
                 Ins6.SetActive(false);
                 Ins7.SetActive(true);
+
+                
+                
+                
             }
 
             // Button 1 
@@ -212,13 +229,19 @@ public class InputController : MonoBehaviour
                 _deskBuilder.UpdateButton1(Button1Pos);
 
                 // Save values
-                PlayerPrefs.SetFloat("Button1X", Button1Pos.x);
-                PlayerPrefs.SetFloat("Button1Y", Button1Pos.y);
-                PlayerPrefs.SetFloat("Button1Z", Button1Pos.z);
+                //PlayerPrefs.SetFloat("Button1X", Button1Pos.x);
+                //PlayerPrefs.SetFloat("Button1Y", Button1Pos.y);
+                //PlayerPrefs.SetFloat("Button1Z", Button1Pos.z);
+
+                
+                
+
 
                 // Change instructions
                 Ins7.SetActive(false);
                 Ins8.SetActive(true);
+
+                
             }
 
             // Button 2
@@ -230,13 +253,17 @@ public class InputController : MonoBehaviour
                 _deskBuilder.UpdateButton2(Button2Pos);
 
                 // Save values
-                PlayerPrefs.SetFloat("Button2X", Button2Pos.x);
-                PlayerPrefs.SetFloat("Button2Y", Button2Pos.y);
-                PlayerPrefs.SetFloat("Button2Z", Button2Pos.z);
+                //PlayerPrefs.SetFloat("Button2X", Button2Pos.x);
+                //PlayerPrefs.SetFloat("Button2Y", Button2Pos.y);
+                //PlayerPrefs.SetFloat("Button2Z", Button2Pos.z);
+
+                
 
                 // Change instructions
                 Ins8.SetActive(false);
                 Ins9.SetActive(true);
+
+                
             }
 
             // Button 3
@@ -248,13 +275,17 @@ public class InputController : MonoBehaviour
                 _deskBuilder.UpdateButton3(Button3Pos);
 
                 // Save values
-                PlayerPrefs.SetFloat("Button3X", Button3Pos.x);
-                PlayerPrefs.SetFloat("Button3Y", Button3Pos.y);
-                PlayerPrefs.SetFloat("Button3Z", Button3Pos.z);
+                //PlayerPrefs.SetFloat("Button3X", Button3Pos.x);
+                //PlayerPrefs.SetFloat("Button3Y", Button3Pos.y);
+                //PlayerPrefs.SetFloat("Button3Z", Button3Pos.z);
+                
+
 
                 // Change instructions
                 Ins9.SetActive(false);
                 Ins10.SetActive(true);
+
+                
             }
 
             // Button 4
@@ -266,13 +297,17 @@ public class InputController : MonoBehaviour
                 _deskBuilder.UpdateButton4(Button4Pos);
 
                 // Save values
-                PlayerPrefs.SetFloat("Button4X", Button4Pos.x);
-                PlayerPrefs.SetFloat("Button4Y", Button4Pos.y);
-                PlayerPrefs.SetFloat("Button4Z", Button4Pos.z);
+                //PlayerPrefs.SetFloat("Button4X", Button4Pos.x);
+                //PlayerPrefs.SetFloat("Button4Y", Button4Pos.y);
+                //PlayerPrefs.SetFloat("Button4Z", Button4Pos.z);
+                
+
 
                 // Change instructions
                 Ins10.SetActive(false);
                 Ins11.SetActive(true);
+
+                
             }
 
             // Chair position
@@ -287,15 +322,20 @@ public class InputController : MonoBehaviour
                 _chairBuilder.UpdateChairPosition(ChairPosition, ChairYrot);
 
                 // Save values
-                PlayerPrefs.SetFloat("ChairPositionX", ChairPosition.x);
-                PlayerPrefs.SetFloat("ChairPositionY", ChairPosition.y);
-                PlayerPrefs.SetFloat("ChairPositionZ", ChairPosition.z);
+                //PlayerPrefs.SetFloat("ChairPositionX", ChairPosition.x);
+                //PlayerPrefs.SetFloat("ChairPositionY", ChairPosition.y);
+                //PlayerPrefs.SetFloat("ChairPositionZ", ChairPosition.z);
 
-                PlayerPrefs.SetFloat("ChairRotationY", ChairYrot);
+                //PlayerPrefs.SetFloat("ChairRotationY", ChairYrot);
+
+
+
 
                 // Change instructions
                 Ins11.SetActive(false);
                 Ins12.SetActive(true);
+
+                
             }
 
             // Chair height
@@ -306,9 +346,9 @@ public class InputController : MonoBehaviour
                 _chairBuilder.UpdateChairHeight(ChairHeight);
 
                 // Save values
-                PlayerPrefs.SetFloat("ChairHeightX", ChairHeight.x);
-                PlayerPrefs.SetFloat("ChairHeightY", ChairHeight.y);
-                PlayerPrefs.SetFloat("ChairHeightZ", ChairHeight.z);
+                //PlayerPrefs.SetFloat("ChairHeightX", ChairHeight.x);
+                //PlayerPrefs.SetFloat("ChairHeightY", ChairHeight.y);
+                //PlayerPrefs.SetFloat("ChairHeightZ", ChairHeight.z);
 
                 // Change instructions
                 Ins12.SetActive(false);
@@ -323,9 +363,9 @@ public class InputController : MonoBehaviour
                 _chairBuilder.UpdateChairRight(ChairRight);
 
                 // Save values
-                PlayerPrefs.SetFloat("ChairRightX", ChairRight.x);
-                PlayerPrefs.SetFloat("ChairRightY", ChairRight.y);
-                PlayerPrefs.SetFloat("ChairRightZ", ChairRight.z);
+                //PlayerPrefs.SetFloat("ChairRightX", ChairRight.x);
+                //PlayerPrefs.SetFloat("ChairRightY", ChairRight.y);
+                //PlayerPrefs.SetFloat("ChairRightZ", ChairRight.z);
 
                 // Change instructions
                 Ins13.SetActive(false);
@@ -340,9 +380,9 @@ public class InputController : MonoBehaviour
                 _chairBuilder.UpdateChairLeft(ChairLeft);
 
                 // Save values
-                PlayerPrefs.SetFloat("ChairLeftX", ChairLeft.x);
-                PlayerPrefs.SetFloat("ChairLeftY", ChairLeft.y);
-                PlayerPrefs.SetFloat("ChairLeftZ", ChairLeft.z);
+                //PlayerPrefs.SetFloat("ChairLeftX", ChairLeft.x);
+                //PlayerPrefs.SetFloat("ChairLeftY", ChairLeft.y);
+                //PlayerPrefs.SetFloat("ChairLeftZ", ChairLeft.z);
 
                 // Change instructions
                 Ins14.SetActive(false);
@@ -357,9 +397,9 @@ public class InputController : MonoBehaviour
                 _chairBuilder.UpdateChairBack(ChairBack);
 
                 // Save values
-                PlayerPrefs.SetFloat("ChairBackX", ChairBack.x);
-                PlayerPrefs.SetFloat("ChairBackY", ChairBack.y);
-                PlayerPrefs.SetFloat("ChairBackZ", ChairBack.z);
+                //PlayerPrefs.SetFloat("ChairBackX", ChairBack.x);
+                //PlayerPrefs.SetFloat("ChairBackY", ChairBack.y);
+                //PlayerPrefs.SetFloat("ChairBackZ", ChairBack.z);
 
                 // Change instructions
                 Ins15.SetActive(false);
@@ -374,26 +414,38 @@ public class InputController : MonoBehaviour
                 _chairBuilder.UpdateChairBackHeight(ChairBackHeight);
 
                 // Save values
-                PlayerPrefs.SetFloat("ChairBackHeightX", ChairBackHeight.x);
-                PlayerPrefs.SetFloat("ChairBackHeightY", ChairBackHeight.y);
-                PlayerPrefs.SetFloat("ChairBackHeightZ", ChairBackHeight.z);
+                //PlayerPrefs.SetFloat("ChairBackHeightX", ChairBackHeight.x);
+                //PlayerPrefs.SetFloat("ChairBackHeightY", ChairBackHeight.y);
+                //PlayerPrefs.SetFloat("ChairBackHeightZ", ChairBackHeight.z);
+
+
+                
+                
 
                 // Change instructions
                 Ins16.SetActive(false);
                 InstructionCanvas.SetActive(false);
 
                 // Save object positions
+                SaveSetupData();
                 CombineScene();
+                SetSpacialAnchorsActive();
 
-                PlayerPrefs.SetInt("IsSavedData", 1);
+                
 
-                LaserPointer.SetActive(true);
+                //PlayerPrefs.SetInt("IsSavedData", 1);
+
+                //LaserPointer.SetActive(true);
+
+                
+
             }
 
             if (BuildStage > 15 && Building == true)
             {
-                //ResetGlobalPosition();
-                LaserPointer.SetActive(true);
+                ResetGlobalPosition();
+                SetSpacialAnchorsActive();
+                LaserPointer.SetActive(false);
             }
 
             if (Building == true)
@@ -462,7 +514,6 @@ public class InputController : MonoBehaviour
         GlobalReference.transform.rotation = Quaternion.Euler(GlobalRotation);
     }
 
-    // Build room selection
     public void SetBuilding()
     {
         Building = true;
@@ -474,115 +525,113 @@ public class InputController : MonoBehaviour
         MainMenu.SetActive(false);
     }
 
-    // Load building from save
     public void LoadBuilding()
     {
-        MainMenu.SetActive(false);
-        LaserPointer.SetActive(false);
+       
 
         // Step 1 - Wall position and rotation
 
-        WallYrot = PlayerPrefs.GetFloat("WallRotationY", 0);
+        //WallYrot = PlayerPrefs.GetFloat("WallRotationY", 0);
 
-        WallPosition = new Vector3(PlayerPrefs.GetFloat("WallPositionX", 0), PlayerPrefs.GetFloat("WallPositionY", 0), PlayerPrefs.GetFloat("WallPositionZ", 0));
+        //WallPosition = new Vector3(PlayerPrefs.GetFloat("WallPositionX", 0), PlayerPrefs.GetFloat("WallPositionY", 0), PlayerPrefs.GetFloat("WallPositionZ", 0));
 
-        _wallBuilder.UpdateWallPosition(WallPosition, WallYrot);
+        //_wallBuilder.UpdateWallPosition(WallPosition, WallYrot);
 
         // Step 2 - Desk position and rotation
 
-        DeskYrot = PlayerPrefs.GetFloat("DeskRotationY", 0);
+        //DeskYrot = PlayerPrefs.GetFloat("DeskRotationY", 0);
 
-        DeskPosition = new Vector3(PlayerPrefs.GetFloat("DeskPositionX", 0), PlayerPrefs.GetFloat("DeskPositionY", 0), PlayerPrefs.GetFloat("DeskPositionZ", 0));
+        //DeskPosition = new Vector3(PlayerPrefs.GetFloat("DeskPositionX", 0), PlayerPrefs.GetFloat("DeskPositionY", 0), PlayerPrefs.GetFloat("DeskPositionZ", 0));
 
-        _deskBuilder.UpdateDeskPosition(DeskPosition, DeskYrot);
+        //_deskBuilder.UpdateDeskPosition(DeskPosition, DeskYrot);
 
         // Step 3 - Desk height
 
-        DeskHeight = new Vector3(PlayerPrefs.GetFloat("DeskHeightX", 0), PlayerPrefs.GetFloat("DeskHeightY", 0), PlayerPrefs.GetFloat("DeskHeightZ", 0));
+        //DeskHeight = new Vector3(PlayerPrefs.GetFloat("DeskHeightX", 0), PlayerPrefs.GetFloat("DeskHeightY", 0), PlayerPrefs.GetFloat("DeskHeightZ", 0));
 
-        _deskBuilder.UpdateDeskHeight(DeskHeight);
+        //_deskBuilder.UpdateDeskHeight(DeskHeight);
 
-        // Step 4 - Desk right
+        //// Step 4 - Desk right
 
-        DeskRight = new Vector3(PlayerPrefs.GetFloat("DeskRightX", 0), PlayerPrefs.GetFloat("DeskRightY", 0), PlayerPrefs.GetFloat("DeskRightZ", 0));
+        //DeskRight = new Vector3(PlayerPrefs.GetFloat("DeskRightX", 0), PlayerPrefs.GetFloat("DeskRightY", 0), PlayerPrefs.GetFloat("DeskRightZ", 0));
 
-        _deskBuilder.UpdateDeskRight(DeskRight);
+        //_deskBuilder.UpdateDeskRight(DeskRight);
 
-        // Step 5 - Desk left
+        //// Step 5 - Desk left
 
-        DeskLeft = new Vector3(PlayerPrefs.GetFloat("DeskLeftX", 0), PlayerPrefs.GetFloat("DeskLeftY", 0), PlayerPrefs.GetFloat("DeskLeftZ", 0));
+        //DeskLeft = new Vector3(PlayerPrefs.GetFloat("DeskLeftX", 0), PlayerPrefs.GetFloat("DeskLeftY", 0), PlayerPrefs.GetFloat("DeskLeftZ", 0));
 
-        _deskBuilder.UpdateDeskLeft(DeskLeft);
+        //_deskBuilder.UpdateDeskLeft(DeskLeft);
 
-        ContentHolder.transform.position = AttachReference.transform.position;
+        //ContentHolder.transform.position = AttachReference.transform.position;
 
         // Step 6 - Desk back
 
-        DeskBack = new Vector3(PlayerPrefs.GetFloat("DeskBackX", 0), PlayerPrefs.GetFloat("DeskBackY", 0), PlayerPrefs.GetFloat("DeskBackZ", 0));
+        //DeskBack = new Vector3(PlayerPrefs.GetFloat("DeskBackX", 0), PlayerPrefs.GetFloat("DeskBackY", 0), PlayerPrefs.GetFloat("DeskBackZ", 0));
 
-        _deskBuilder.UpdateDeskBack(DeskBack);
+        //_deskBuilder.UpdateDeskBack(DeskBack);
 
-        // Step 7 - Button 1 position
+        //// Step 7 - Button 1 position
 
-        Button1Pos = new Vector3(PlayerPrefs.GetFloat("Button1X"), PlayerPrefs.GetFloat("Button1Y"), PlayerPrefs.GetFloat("Button1Z"));
+        //Button1Pos = new Vector3(PlayerPrefs.GetFloat("Button1X"), PlayerPrefs.GetFloat("Button1Y"), PlayerPrefs.GetFloat("Button1Z"));
 
-        _deskBuilder.UpdateButton1(Button1Pos);
+        //_deskBuilder.UpdateButton1(Button1Pos);
 
-        // Step 8 - Button 2 position
+        //// Step 8 - Button 2 position
 
-        Button2Pos = new Vector3(PlayerPrefs.GetFloat("Button2X"), PlayerPrefs.GetFloat("Button2Y"), PlayerPrefs.GetFloat("Button2Z"));
+        //Button2Pos = new Vector3(PlayerPrefs.GetFloat("Button2X"), PlayerPrefs.GetFloat("Button2Y"), PlayerPrefs.GetFloat("Button2Z"));
 
-        _deskBuilder.UpdateButton2(Button2Pos);
+        //_deskBuilder.UpdateButton2(Button2Pos);
 
-        // Step 9 - Button 3 position
+        //// Step 9 - Button 3 position
 
-        Button3Pos = new Vector3(PlayerPrefs.GetFloat("Button3X"), PlayerPrefs.GetFloat("Button3Y"), PlayerPrefs.GetFloat("Button3Z"));
+        //Button3Pos = new Vector3(PlayerPrefs.GetFloat("Button3X"), PlayerPrefs.GetFloat("Button3Y"), PlayerPrefs.GetFloat("Button3Z"));
 
-        _deskBuilder.UpdateButton3(Button3Pos);
+        //_deskBuilder.UpdateButton3(Button3Pos);
 
         // Step 10 - Button 4 position
 
-        Button4Pos = new Vector3(PlayerPrefs.GetFloat("Button4X"), PlayerPrefs.GetFloat("Button4Y"), PlayerPrefs.GetFloat("Button4Z"));
+        //Button4Pos = new Vector3(PlayerPrefs.GetFloat("Button4X"), PlayerPrefs.GetFloat("Button4Y"), PlayerPrefs.GetFloat("Button4Z"));
 
-        _deskBuilder.UpdateButton4(Button4Pos);
+        //_deskBuilder.UpdateButton4(Button4Pos);
 
-        // Step 11 - Chair position and rotation
+        //// Step 11 - Chair position and rotation
 
-        ChairYrot = PlayerPrefs.GetFloat("ChairRotationY", 0);
+        //ChairYrot = PlayerPrefs.GetFloat("ChairRotationY", 0);
 
-        ChairPosition = new Vector3(PlayerPrefs.GetFloat("ChairPositionX", 0), PlayerPrefs.GetFloat("ChairPositionY", 0), PlayerPrefs.GetFloat("ChairPositionZ", 0));
+        //ChairPosition = new Vector3(PlayerPrefs.GetFloat("ChairPositionX", 0), PlayerPrefs.GetFloat("ChairPositionY", 0), PlayerPrefs.GetFloat("ChairPositionZ", 0));
 
-        _chairBuilder.UpdateChairPosition(ChairPosition, ChairYrot);
+        //_chairBuilder.UpdateChairPosition(ChairPosition, ChairYrot);
 
-        // Step 12 - Chair height
+        //// Step 12 - Chair height
 
-        ChairHeight = new Vector3(PlayerPrefs.GetFloat("ChairHeightX", 0), PlayerPrefs.GetFloat("ChairHeightY", 0), PlayerPrefs.GetFloat("ChairHeightZ", 0));
+        //ChairHeight = new Vector3(PlayerPrefs.GetFloat("ChairHeightX", 0), PlayerPrefs.GetFloat("ChairHeightY", 0), PlayerPrefs.GetFloat("ChairHeightZ", 0));
 
-        _chairBuilder.UpdateChairHeight(ChairHeight);
+        //_chairBuilder.UpdateChairHeight(ChairHeight);
 
-        // Step 13 - Chair right
+        //// Step 13 - Chair right
 
-        ChairRight = new Vector3(PlayerPrefs.GetFloat("ChairRightX", 0), PlayerPrefs.GetFloat("ChairRightY", 0), PlayerPrefs.GetFloat("ChairRightZ", 0));
+        //ChairRight = new Vector3(PlayerPrefs.GetFloat("ChairRightX", 0), PlayerPrefs.GetFloat("ChairRightY", 0), PlayerPrefs.GetFloat("ChairRightZ", 0));
 
-        _chairBuilder.UpdateChairRight(ChairRight);
+        //_chairBuilder.UpdateChairRight(ChairRight);
 
-        // Step 14 - Chair left
+        //// Step 14 - Chair left
 
-        ChairLeft = new Vector3(PlayerPrefs.GetFloat("ChairLeftX", 0), PlayerPrefs.GetFloat("ChairLeftY", 0), PlayerPrefs.GetFloat("ChairLeftZ", 0));
+        //ChairLeft = new Vector3(PlayerPrefs.GetFloat("ChairLeftX", 0), PlayerPrefs.GetFloat("ChairLeftY", 0), PlayerPrefs.GetFloat("ChairLeftZ", 0));
 
-        _chairBuilder.UpdateChairLeft(ChairLeft);
+        //_chairBuilder.UpdateChairLeft(ChairLeft);
 
         // Step 15 - Chair back
 
-        ChairBack = new Vector3(PlayerPrefs.GetFloat("ChairBackX", 0), PlayerPrefs.GetFloat("ChairBackY", 0), PlayerPrefs.GetFloat("ChairBackZ", 0));
+        //ChairBack = new Vector3(PlayerPrefs.GetFloat("ChairBackX", 0), PlayerPrefs.GetFloat("ChairBackY", 0), PlayerPrefs.GetFloat("ChairBackZ", 0));
 
-        _chairBuilder.UpdateChairBack(ChairBack);
+        //_chairBuilder.UpdateChairBack(ChairBack);
 
-        // Step 16 - Chair back height
+        //// Step 16 - Chair back height
 
-        ChairBackHeight = new Vector3(PlayerPrefs.GetFloat("ChairBackHeightX", 0), PlayerPrefs.GetFloat("ChairBackHeightY", 0), PlayerPrefs.GetFloat("ChairBackHeightZ", 0));
+        //ChairBackHeight = new Vector3(PlayerPrefs.GetFloat("ChairBackHeightX", 0), PlayerPrefs.GetFloat("ChairBackHeightY", 0), PlayerPrefs.GetFloat("ChairBackHeightZ", 0));
 
-        _chairBuilder.UpdateChairBackHeight(ChairBackHeight);
+        //_chairBuilder.UpdateChairBackHeight(ChairBackHeight);
 
         // Make objects child of global reference position
         CombineScene();
@@ -592,4 +641,200 @@ public class InputController : MonoBehaviour
 
         Building = true;
     }
+
+    public void SetSpacialAnchorsActive()
+    {
+        List<OVRSpatialAnchor> spacialAnachors = new List<OVRSpatialAnchor>();
+
+
+        spacialAnachors.Add(Desk.GetComponent<OVRSpatialAnchor>());
+        spacialAnachors.Add(Chair.GetComponent<OVRSpatialAnchor>());
+        spacialAnachors.Add(Button1.GetComponent<OVRSpatialAnchor>());
+        spacialAnachors.Add(Button2.GetComponent<OVRSpatialAnchor>());
+        spacialAnachors.Add(Button3.GetComponent<OVRSpatialAnchor>());
+        spacialAnachors.Add(Button4.GetComponent<OVRSpatialAnchor>());
+        spacialAnachors.Add(Wall.GetComponent<OVRSpatialAnchor>());
+
+        foreach(OVRSpatialAnchor anchor in spacialAnachors)
+        {
+            anchor.Save();
+            
+        }
+
+    }
+
+    public void LoadSetupData()
+    {
+       // debugText.text = "LoadSetup Started";
+        if (!File.Exists(SetupDataFileLocation))
+        {
+            Debug.LogError("SetupData not found");
+           // debugText.text = "SetupData not found";
+            return;
+        }
+        
+        
+        
+        string fileContents = File.ReadAllText(SetupDataFileLocation);
+
+        setupDataCollection = JsonUtility.FromJson<SetupDataCollection>(fileContents);
+
+        //wallData = JsonUtility.FromJson<WallData>(fileContents);
+        //deskData = JsonUtility.FromJson<DeskData>(fileContents);
+        //buttonData = JsonUtility.FromJson<ButtonData>(fileContents);
+        //chairData = JsonUtility.FromJson<ChairData>(fileContents);
+
+        wallData = setupDataCollection.wallData;
+        deskData = setupDataCollection.deskData;
+        buttonData = setupDataCollection.buttonData;
+        chairData = setupDataCollection.chairData;
+
+
+        WallPosition = wallData.position;
+        WallYrot = wallData.YRotation;
+
+        DeskPosition = deskData.position;
+        DeskYrot = deskData.YRotation ;
+        DeskHeight = deskData.deskHeight;
+        DeskRight = deskData.deskRight;
+        DeskLeft = deskData.deskLeft;
+        DeskBack = deskData.deskBack ;
+
+        Button1Pos = buttonData.position1;
+        Button2Pos =  buttonData.position2;
+        Button3Pos = buttonData.position3;
+        Button4Pos = buttonData.position4;
+
+        ChairPosition = chairData.position;
+        ChairYrot = chairData.YRotation;
+        ChairHeight = chairData.chairHeight;
+        ChairRight = chairData.chairRight;
+        ChairLeft = chairData.chairLeft;
+        ChairBack = chairData.chairBack;
+        ChairBackHeight = chairData.chairBackHeight;
+
+        //update the positions
+        _wallBuilder.UpdateWallPosition(WallPosition, WallYrot);
+
+        _deskBuilder.UpdateDeskPosition(DeskPosition, DeskYrot);
+        _deskBuilder.UpdateDeskHeight(DeskHeight);
+        _deskBuilder.UpdateDeskBack(DeskBack);
+        _deskBuilder.UpdateDeskRight(DeskRight);
+        _deskBuilder.UpdateDeskLeft(DeskLeft);
+
+        _deskBuilder.UpdateButton4(Button4Pos);
+        _deskBuilder.UpdateButton3(Button3Pos);
+        _deskBuilder.UpdateButton2(Button2Pos);
+        _deskBuilder.UpdateButton1(Button1Pos);
+
+        _chairBuilder.UpdateChairPosition(ChairPosition, ChairYrot);
+        _chairBuilder.UpdateChairHeight(ChairHeight);
+        _chairBuilder.UpdateChairRight(ChairRight);
+        _chairBuilder.UpdateChairLeft(ChairLeft);
+        _chairBuilder.UpdateChairBack(ChairBack);
+        _chairBuilder.UpdateChairBackHeight(ChairBackHeight);
+
+        MainMenu.SetActive(false);
+        LaserPointer.SetActive(false);
+        CombineScene();
+        SetSpacialAnchorsActive();
+        //debugText.text = "Setup complete";
+    }
+
+    void SaveSetupData()
+    {
+        if (!File.Exists(SetupDataFileLocation))
+        {
+            FileStream fs = File.Create(SetupDataFileLocation);
+            fs.Close();
+        }
+
+        //populate the data
+        wallData.position = WallPosition;
+        wallData.YRotation = WallYrot;
+
+        deskData.position = DeskPosition;
+        deskData.YRotation = DeskYrot;
+        deskData.deskHeight = DeskHeight;
+        deskData.deskRight = DeskRight;
+        deskData.deskLeft = DeskLeft;
+        deskData.deskBack = DeskBack;
+
+        buttonData.position1 = Button1Pos;
+        buttonData.position2 = Button2Pos;
+        buttonData.position3 = Button3Pos;
+        buttonData.position4 = Button4Pos;
+
+        chairData.position = ChairPosition;
+        chairData.YRotation = ChairYrot;
+        chairData.chairHeight = ChairHeight;
+        chairData.chairRight = ChairRight;
+        chairData.chairLeft = ChairLeft;
+        chairData.chairBack = ChairBack;
+        chairData.chairBackHeight = ChairBackHeight;
+
+        setupDataCollection.wallData = wallData;
+        setupDataCollection.deskData = deskData;
+        setupDataCollection.buttonData = buttonData;
+        setupDataCollection.chairData = chairData;
+
+
+        //write to json file
+        string jsonToSave = JsonUtility.ToJson(setupDataCollection, true);
+        print(jsonToSave);
+        File.WriteAllText(SetupDataFileLocation, jsonToSave);
+    }
+
+    //---Update to be in one class ---
+    [Serializable]
+    public class WallData
+    {
+        public Vector3 position;
+        public float YRotation;
+    }
+
+    [Serializable]
+    public class DeskData
+    {
+        public Vector3 position;
+        public float YRotation;
+        public Vector3 deskHeight;
+        public Vector3 deskRight;
+        public Vector3 deskLeft;
+        public Vector3 deskBack;
+    }
+
+    [Serializable]
+    public class ButtonData
+    {
+        public Vector3 position1;
+        public Vector3 position2;
+        public Vector3 position3;
+        public Vector3 position4;
+    }
+
+    [Serializable]
+    public class ChairData
+    {
+        public Vector3 position;
+        public float YRotation;
+        public Vector3 chairHeight;
+        public Vector3 chairRight;
+        public Vector3 chairLeft;
+        public Vector3 chairBack;
+        public Vector3 chairBackHeight;
+    }
+
+    [Serializable]
+    public class SetupDataCollection
+    {
+        public WallData wallData;
+        public DeskData deskData;
+        public ButtonData buttonData;
+        public ChairData chairData;
+
+    }
+
+
+
 }

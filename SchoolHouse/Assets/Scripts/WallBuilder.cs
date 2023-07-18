@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class WallBuilder : MonoBehaviour
 {
+    
         // Change position and rotation of wall
         public void UpdateWallPosition(Vector3 PositionReference, float Yrotation)
     {

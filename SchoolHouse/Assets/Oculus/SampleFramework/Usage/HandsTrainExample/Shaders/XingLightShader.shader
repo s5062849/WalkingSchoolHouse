@@ -3,7 +3,7 @@
 Copyright (c) Facebook Technologies, LLC and its affiliates. All rights reserved.
 
 See SampleFramework license.txt for license terms.  Unless required by applicable law
-or agreed to in writing, the sample code is provided “AS IS” WITHOUT WARRANTIES OR
+or agreed to in writing, the sample code is provided "AS IS" WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied.  See the license for specific
 language governing permissions and limitations under the license.
 
@@ -38,16 +38,12 @@ Shader "Oculus Sample/Xing Light"
         {
           float4 vertex : POSITION;
           float2 uv : TEXCOORD0;
-
-          UNITY_VERTEX_INPUT_INSTANCE_ID
         };
 
         struct v2f
         {
           float4 vertex : SV_POSITION;
           float2 uv : TEXCOORD0;
-
-          UNITY_VERTEX_OUTPUT_STEREO
         };
 
         fixed4 _Color;
@@ -57,11 +53,6 @@ Shader "Oculus Sample/Xing Light"
         v2f vert (appdata v)
         {
           v2f o;
-
-          UNITY_SETUP_INSTANCE_ID(v);
-          UNITY_INITIALIZE_OUTPUT(v2f, o);
-          UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
-
           o.vertex = UnityObjectToClipPos(v.vertex);
           o.uv = TRANSFORM_TEX(v.uv, _MainTex);
           return o;
